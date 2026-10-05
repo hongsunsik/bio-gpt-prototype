@@ -55,7 +55,8 @@ with st.sidebar:
                                 help="영어 문서에서 약물·시험 이름 같은 키워드를 정확히 찾기 위해 LLM이 질문을 번역합니다")
         prompt_style = st.selectbox("프롬프트 기법", list(DOC_STYLES), index=list(DOC_STYLES).index(rag_module.DEFAULT_STYLE),
                                     format_func=DOC_STYLES.get)
-        doc_only = st.checkbox("업로드 문서만 검색", value=True, help="끄면 논문·임상·FDA 검색 결과와 함께 답합니다")
+        doc_only = st.checkbox("업로드 문서만 검색", value=False,
+                               help="끄면(기본) 질문이 문서에 관한 것일 때만 문서로 답하고, 아니면 논문·임상·FDA를 검색합니다")
     st.session_state.doc_index = None
     if up is not None or use_sample:
         if up is not None:

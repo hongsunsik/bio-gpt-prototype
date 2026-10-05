@@ -55,7 +55,15 @@ class DocIndex:
     chunk_size: int
     chunk_overlap: int
     store: FAISS
+    summary: str = ""  # 첫 쪽 앞부분
     _bm25: tuple | None = field(default=None, repr=False)
+
+    @property
+    def text(self) -> str:
+        """문서 전체 글(소문자). 질문 속 약물 이름이 이 문서에 나오는지 확인할 때 쓴다."""
+        if not hasattr(self, "_text"):
+            self._text = re.sub(r"\s+", " ", " ".join(d.page_content for d in self.store.docstore._dict.values())).lower()
+        return self._text
 
     def _keyword_search(self, query: str, n: int) -> list:
         """BM25 키워드 검색: 질문의 단어가 청크에 몇 번, 얼마나 드물게 나오는지로 점수를 매긴다."""
@@ -149,5 +157,7 @@ def build_index(pdf_path: str, name: str | None = None, chunk_size: int = DEFAUL
             store = FAISS.from_documents(chunks, _embeddings)  # [3~4단계] 임베딩 + FAISS 저장
             store.save_local(str(folder))
             n_chunks = len(chunks)
-        _cache[key] = DocIndex(name or os.path.basename(pdf_path), n_pages, n_chunks, chunk_size, chunk_overlap, store)
+        first = min(store.docstore._dict.values(), key=lambda d: (d.metadata["page"], d.metadata["cite_id"]))
+        summary = re.sub(r"\s+", " ", first.page_content)[:300]
+        _cache[key] = DocIndex(name or os.path.basename(pdf_path), n_pages, n_chunks, chunk_size, chunk_overlap, store, summary)
     return _cache[key]

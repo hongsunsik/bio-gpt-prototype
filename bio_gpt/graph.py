@@ -92,6 +92,26 @@ def guard(state: State) -> State:
     return {"category": "", "trace": _trace(state, "guard", t0, "통과")}
 
 
+PERSONAL_HINT = r"(제가|저는|저도|저희|내가|나는|우리\s*(엄마|아빠|아이|애|어머니|아버지|가족)|엄마|아빠|어머니|아버지|남편|아내|와이프|할머니|할아버지|아들|딸|친구)"
+DOC_POINTER = r"(이|해당|위|업로드한?)\s*(약|약물|문서|라벨|논문|임상|파일|자료)"
+
+
+def _about_doc(question: str, entities: list, ix) -> bool:
+    """질문이 업로드 문서에 관한 것인가. 작은 모델은 이 판단을 못 해서(실측) 규칙으로 정한다.
+    ① '이 약', '이 문서' 같은 지시어 ② 질문 속 약물 이름이 문서에 나옴 ③ 약물 이름이 없으면 질환 등 다른 이름이 문서에 나옴
+    ④ 이름이 하나도 없으면 문서와의 의미 거리가 가까울 때."""
+    if re.search(DOC_POINTER, question):
+        return True
+    names = lambda types: [str(e.get("normalized") or e.get("text") or "").lower() for e in entities
+                           if isinstance(e, dict) and e.get("type") in types]
+    drugs, others = names(("drug",)), names(("gene", "protein", "disease", "other"))
+    if drugs:
+        return any(len(n) >= 3 and n in ix.text for n in drugs)
+    if others:
+        return any(len(n) >= 3 and n in ix.text for n in others)
+    return ix.store.similarity_search_with_score(question, k=1)[0][1] < 0.75
+
+
 def plan(state: State) -> State:
     t0 = time.time()
     if state.get("doc_only") and state.get("doc_index"):
@@ -101,12 +121,23 @@ def plan(state: State) -> State:
     hist = "\n".join(f"Q: {q}\nA: {a[:300]}" for q, a in state.get("history", [])[-2:]) or "(없음)"
     out = chat_json(P.PLANNER_SYSTEM, P.PLANNER_USER.format(history=hist, question=state["question"]))
     category = out.get("category", "research")
+    entities = out.get("entities", []) or []
+    bio = [e for e in entities if isinstance(e, dict) and e.get("type") in ("drug", "gene", "protein", "disease")]
+    # 작은 모델이 과하게 거절하는 것을 규칙으로 바로잡는다 (2주차: "아스피린이 뭐야?"를 무관 질문으로 거절하던 문제)
+    if category == "off_topic" and bio:
+        category = "research"  # 약·질병 이름이 있으면 바이오 질문
+    if category == "personal_medical" and not re.search(PERSONAL_HINT, state["question"]):
+        category = "research"  # 특정 개인을 가리키는 말이 없으면 일반 정보 질문 (예: "소아 환자의 허가 용량은?")
+    ix = state.get("doc_index")
+    if ix and category == "research" and _about_doc(state["question"], entities, ix):
+        # 업로드 문서에 관한 질문 → 문서만 검색. 문서와 무관하면 아래처럼 논문·임상·FDA 검색
+        return {"category": "research", "modules": ["pdf"], "queries": {"pdf": state["question"]},
+                "rewritten": state["question"], "entities": entities,
+                "trace": _trace(state, "plan", t0, "업로드 문서에 관한 질문 → 문서 검색")}
     modules = [m for m in out.get("modules", []) if m in SOURCES]
     queries = out.get("queries", {}) or {}
     if category == "research" and not modules:  # 계획이 비면 논문 검색으로 기본 처리
         modules, queries = ["pubmed"], {"pubmed": out.get("rewritten_question", state["question"])}
-    if category == "research" and state.get("doc_index"):  # 업로드 문서가 있으면 함께 검색
-        modules, queries = modules + ["pdf"], {**queries, "pdf": state["question"]}
     return {
         "category": category, "modules": modules, "queries": queries,
         "fda_sections": [x for x in out.get("fda_sections", []) or [] if x in ("IND", "DOSE", "BOX")],

@@ -147,9 +147,17 @@ def select_passages(text: str, focus: list[str], budget: int = SECTION_BUDGET) -
     return " … ".join(chunks[i] for i in sorted(picked))
 
 
+# 미국 FDA는 미국식 일반명(USAN)을 쓴다. 국제명(INN)으로 찾으면 0건이 되는 약 (예: 타이레놀 → paracetamol로 검색해 0건)
+US_NAMES = {"paracetamol": "acetaminophen", "adrenaline": "epinephrine", "noradrenaline": "norepinephrine",
+            "salbutamol": "albuterol", "glibenclamide": "glyburide", "pethidine": "meperidine",
+            "lignocaine": "lidocaine", "frusemide": "furosemide", "ciclosporin": "cyclosporine",
+            "rifampicin": "rifampin", "aciclovir": "acyclovir"}
+
+
 def search_fda_label(drug: str, sections: list | None = None, focus: list | None = None) -> list[Doc]:
     """sections: 필요한 라벨 섹션만 (IND 적응증 / DOSE 용법·용량 / BOX 박스 경고). None이면 전부.
     focus: 질문의 핵심어(영문). 긴 섹션에서 관련 부분을 고를 때 쓴다."""
+    drug = US_NAMES.get(drug.strip().lower(), drug)
     r = _get(OPENFDA, {"search": f'openfda.generic_name:"{drug}" OR openfda.brand_name:"{drug}"', "limit": 5})
     if r.status_code == 404:
         return []
