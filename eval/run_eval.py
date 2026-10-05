@@ -11,10 +11,11 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from bio_gpt.glossary import FOREIGN_SCRIPT_RE  # noqa: E402
-from bio_gpt.graph import CITE_RE, ask  # noqa: E402
-from bio_gpt.llm import JUDGE_MODEL, MODEL  # noqa: E402
-from bio_gpt.prompts import PROMPT_VERSION  # noqa: E402
+from bio_gpt.agent import ask  # noqa: E402
+from bio_gpt.agent.citations import CITE_RE  # noqa: E402
+from bio_gpt.agent.glossary import FOREIGN_SCRIPT_RE  # noqa: E402
+from bio_gpt.agent.prompts import PROMPT_VERSION  # noqa: E402
+from bio_gpt.config import JUDGE, WRITER  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent
 # QUR-001 개정안: 발주처 최소 기준선
@@ -100,7 +101,7 @@ def main():
     ts = time.strftime("%Y%m%d_%H%M")
     out = ROOT / "results"
     out.mkdir(exist_ok=True)
-    lines = [f"# 골든셋 평가 결과 ({ts})", "", f"- 모델: `{MODEL}` / 검사관: `{JUDGE_MODEL}` / 프롬프트: `{PROMPT_VERSION}` / 문항: {len(rows)}개", ""] + ([f"- ⚠️ {stopped}", ""] if stopped else []) + [
+    lines = [f"# 골든셋 평가 결과 ({ts})", "", f"- 모델: `{WRITER.model}` / 검사관: `{JUDGE.model}` / 프롬프트: `{PROMPT_VERSION}` / 문항: {len(rows)}개", ""] + ([f"- ⚠️ {stopped}", ""] if stopped else []) + [
              "## 지표", "", "| 지표 | 결과 | 기준선 | 판정 |", "|---|---|---|---|"]
     for k, v in metrics.items():
         th = THRESHOLDS.get(k)
@@ -127,7 +128,7 @@ def main():
     lines += ["", "## 답변 원문", ""]
     for r in rows:
         lines += [f"### {r['id']} ({r['status']})", "", r["answer"].split("\n---\n")[0], ""]
-    tag = re.sub(r"[^a-zA-Z0-9.-]", "", MODEL + ("" if JUDGE_MODEL == MODEL else f"_judge-{JUDGE_MODEL}"))
+    tag = re.sub(r"[^a-zA-Z0-9.-]", "", WRITER.model + ("" if JUDGE.model == WRITER.model else f"_judge-{JUDGE.model}"))
     path = out / f"report_{ts}_{tag}.md"
     path.write_text("\n".join(lines))
     (out / f"raw_{ts}_{tag}.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))

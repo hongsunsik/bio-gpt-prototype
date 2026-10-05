@@ -62,6 +62,7 @@ uv run streamlit run app.py
 ### 평가
 
 ```bash
+uv run pytest                                     # 단위 테스트 (모델 없이 1초)
 uv run python eval/run_eval.py                    # 1차: 외부 DB 검색 골든셋 16문항
 uv run python eval/rag_sweep.py retrieval         # 2주차: 검색 파라미터 실험 (그 밖의 단계는 docs/rag_experiments.md)
 ```
@@ -69,23 +70,34 @@ uv run python eval/rag_sweep.py retrieval         # 2주차: 검색 파라미터
 ## 구조
 
 ```
-app.py                 Streamlit UI
+app.py                   Streamlit UI
 bio_gpt/
-  graph.py             LangGraph 워크플로 (guard → plan → retrieve → generate ⇄ verify → finalize)
-  sources.py           PubMed / ClinicalTrials.gov / openFDA 연동
-  prompts.py           프롬프트 명세 (버전 관리)
-  glossary.py          영-한 의학 표준 용어 사전
-  llm.py               OpenAI 호환 LLM 클라이언트 (Ollama · GPT-4o · Gemini 교체 가능)
-  rag_module.py        업로드 PDF RAG: 분할 · 임베딩 · FAISS · 검색(similarity/mmr/hybrid)
-  store.py             SQLite 로그·피드백
+  config.py              환경 설정 (.env → 작성·검사 모델, 임베딩)
+  models.py              공통 타입 Doc
+  llm.py                 OpenAI 호환 LLM 호출 (Ollama · GPT-4o · Gemini)
+  storage.py             SQLite 로그·피드백
+  agent/                 질의응답 에이전트 (LangGraph)
+    graph.py               흐름 연결: guard → plan → retrieve → generate ⇄ verify → finalize
+    policy.py              안전 점검 규칙 (인젝션 · 개인 상담 · 규제 표현)
+    planner.py             질문 분석, 검색 경로 결정
+    retriever.py           소스 병렬 검색
+    writer.py              답변 작성, 걸린 줄 고쳐 쓰기
+    verifier.py            줄 단위 검사 (인용 · 숫자 · 문자 · LLM 판정)
+    respond.py             최종 문구
+    citations.py           인용 형식 교정, 줄 정리
+    prompts.py             프롬프트 명세 (버전 관리)
+    glossary.py            영-한 의학 표준 용어 사전
+  sources/               외부 DB: pubmed · trials · fda, 공통 재시도(http)
+  rag/                   업로드 PDF: loader · embeddings · retrieval(BM25, RRF) · index(FAISS)
+tests/                   단위 테스트 (LLM·네트워크 없이 실행)
 eval/
-  golden_set.jsonl     골든셋 16문항
-  run_eval.py          지표 계산 + 기준선 판정 리포트
-  pdf_golden_set.jsonl 업로드 문서 RAG 평가 13문항 (정답 원문·키워드)
-  rag_sweep.py         chunk_size · overlap · k · 검색 방식 · 프롬프트 기법 비교 실험
-samples/               실험·시연용 PDF (키트루다 FDA 허가 라벨)
-docs/architecture.md   시스템 설계서
-docs/rag_experiments.md 2주차 RAG 실험 보고서
+  golden_set.jsonl       골든셋 16문항
+  run_eval.py            지표 계산 + 기준선 판정 리포트
+  pdf_golden_set.jsonl   업로드 문서 RAG 평가 13문항 (정답 원문·키워드)
+  rag_sweep.py           chunk_size · overlap · k · 검색 방식 · 프롬프트 기법 비교 실험
+samples/                 실험·시연용 PDF (키트루다 FDA 허가 라벨)
+docs/architecture.md     시스템 설계서
+docs/rag_experiments.md  2주차 RAG 실험 보고서
 ```
 
 > 의료적 판단을 대신하지 않는 교육용 프로토타입입니다. 사업명·예산 등 RFP 수치는 가상 값입니다.

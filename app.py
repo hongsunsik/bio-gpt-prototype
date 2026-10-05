@@ -6,10 +6,10 @@ from pathlib import Path
 
 import streamlit as st
 
-from bio_gpt import rag_module, store
-from bio_gpt.graph import ask_stream
-from bio_gpt.llm import BASE_URL, JUDGE_MODEL, MODEL
-from bio_gpt.prompts import DOC_STYLES, PROMPT_VERSION
+from bio_gpt import rag, storage as store
+from bio_gpt.agent import ask_stream
+from bio_gpt.agent.prompts import DOC_STYLES, PROMPT_VERSION
+from bio_gpt.config import JUDGE, WRITER
 
 SAMPLE_PDF = Path(__file__).parent / "samples" / "keytruda_label.pdf"
 
@@ -27,7 +27,7 @@ if "turns" not in st.session_state:
 with st.sidebar:
     st.header("🧬 Bio-GPT")
     st.caption("생성형 AI 기반 바이오·제약 R&D 지식 플랫폼 — 1차년도 핵심기능 프로토타입")
-    st.markdown(f"**작성 모델** `{MODEL}`  \n**검사 모델** `{JUDGE_MODEL}`  \n**엔드포인트** `{BASE_URL}`  \n**프롬프트** `{PROMPT_VERSION}`")
+    st.markdown(f"**작성 모델** `{WRITER.model}`  \n**검사 모델** `{JUDGE.model}`  \n**엔드포인트** `{WRITER.base_url}`  \n**프롬프트** `{PROMPT_VERSION}`")
     st.divider()
     s = store.stats()
     c1, c2 = st.columns(2)
@@ -43,17 +43,17 @@ with st.sidebar:
     use_sample = st.checkbox("샘플: 키트루다 FDA 허가 라벨(106쪽)", value=os.getenv("BIOGPT_SAMPLE") == "1",
                              disabled=up is not None)
     with st.expander("검색 파라미터", expanded=True):
-        d = rag_module.DEFAULTS
+        d = rag.DEFAULTS
         chunk_size = st.slider("chunk_size (청크 글자 수)", 200, 2000, d["chunk_size"], 100)
         chunk_overlap = st.slider("chunk_overlap (앞뒤 청크 겹침)", 0, chunk_size // 2, min(d["chunk_overlap"], chunk_size // 2), 25)
         k = st.slider("k (가져올 청크 수)", 1, 10, d["k"])
-        types = ["similarity", "mmr", "hybrid"]
+        types = list(rag.SEARCH_TYPES)
         search_type = st.radio("검색 방식", types, index=types.index(d["search_type"]), horizontal=True,
                                help="similarity: 의미가 가장 가까운 k개 / mmr: 가까우면서 서로 겹치지 않는 k개 / "
                                     "hybrid: 의미 검색 + 키워드 검색(BM25)을 합침")
         translate = st.checkbox("질문을 영어 검색어로 바꿔 검색", value=d.get("translate", False),
                                 help="영어 문서에서 약물·시험 이름 같은 키워드를 정확히 찾기 위해 LLM이 질문을 번역합니다")
-        prompt_style = st.selectbox("프롬프트 기법", list(DOC_STYLES), index=list(DOC_STYLES).index(rag_module.DEFAULT_STYLE),
+        prompt_style = st.selectbox("프롬프트 기법", list(DOC_STYLES), index=list(DOC_STYLES).index(rag.DEFAULT_STYLE),
                                     format_func=DOC_STYLES.get)
         doc_only = st.checkbox("업로드 문서만 검색", value=False,
                                help="끄면(기본) 질문이 문서에 관한 것일 때만 문서로 답하고, 아니면 논문·임상·FDA를 검색합니다")
@@ -67,10 +67,10 @@ with st.sidebar:
             path, name = SAMPLE_PDF, SAMPLE_PDF.name
         t0 = time.time()
         with st.spinner("문서를 나누고 임베딩하는 중… (처음 한 번만)"):
-            ix = rag_module.build_index(str(path), name=name, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+            ix = rag.build_index(str(path), name=name, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
         st.session_state.doc_index = ix
         st.success(f"{ix.name} · {ix.pages}쪽 → 청크 {ix.chunks:,}개 ({time.time() - t0:.1f}초)")
-        st.caption(f"임베딩 `{rag_module.EMBED_MODEL}` · 벡터 DB `FAISS`")
+        st.caption(f"임베딩 `{rag.EMBED_MODEL}` · 벡터 DB `FAISS`")
     st.divider()
     st.markdown("**예시 질문**")
     examples = [

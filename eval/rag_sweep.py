@@ -18,7 +18,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from bio_gpt.rag_module import build_index  # noqa: E402
+from bio_gpt.rag import build_index  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent
 PDF = ROOT.parent / "samples" / "keytruda_label.pdf"
@@ -90,7 +90,8 @@ def stage_retrieval():
 
 # ------------------------------------------------------------------ 2·3단계: 실제 답 생성
 def run_answers(style: str, size: int, overlap: int, k: int, search_type: str, query: str = "ko") -> dict:
-    from bio_gpt.graph import answer_from_docs, verify_answer
+    from bio_gpt.agent.verifier import verify_answer
+    from bio_gpt.agent.writer import answer_from_docs
 
     ix = build_index(str(PDF), chunk_size=size, chunk_overlap=overlap)
     per = []
@@ -146,7 +147,7 @@ COMMON_NOTES = [
 
 
 def stage_prompt():
-    from bio_gpt.prompts import DOC_STYLES
+    from bio_gpt.agent.prompts import DOC_STYLES
 
     # 1단계에서 적중률이 높고 입력이 과하지 않았던 설정으로 고정해, 검색 실패가 프롬프트 비교를 가리지 않게 한다
     results = [run_answers(style, 800, 0, 5, "hybrid") for style in DOC_STYLES]
@@ -164,8 +165,8 @@ def stage_params(style: str):
 
 def stage_final():
     """시작점(기본 설정)과 최종 앱 흐름(검사·고쳐 쓰기·마무리 포함)의 최종 답을 비교한다."""
-    from bio_gpt.graph import ask
-    from bio_gpt.rag_module import DEFAULT_STYLE, DEFAULTS
+    from bio_gpt.agent import ask
+    from bio_gpt.rag import DEFAULT_STYLE, DEFAULTS
 
     start = run_answers("baseline", 400, 100, 3, "similarity")
     d = DEFAULTS

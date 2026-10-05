@@ -2,12 +2,11 @@
 import json
 import sqlite3
 import time
-from pathlib import Path
 
-from .llm import JUDGE_MODEL, MODEL
-from .prompts import PROMPT_VERSION
+from .agent.prompts import PROMPT_VERSION
+from .config import DATA_DIR, JUDGE, WRITER
 
-DB = Path(__file__).resolve().parent.parent / "data" / "bio_gpt.db"
+DB = DATA_DIR / "bio_gpt.db"
 
 
 def _conn():
@@ -22,6 +21,12 @@ def _conn():
     return c
 
 
+def _model_label() -> str:
+    if JUDGE.model == WRITER.model:
+        return WRITER.model
+    return f"{WRITER.model} (검사관 {JUDGE.model})"
+
+
 def log_query(state: dict) -> int:
     with _conn() as c:
         cur = c.execute(
@@ -32,7 +37,7 @@ def log_query(state: dict) -> int:
              json.dumps(state.get("trace", []), ensure_ascii=False), state.get("final"),
              json.dumps([d.id for d in state.get("docs", [])]),
              json.dumps(state.get("verification", {}), ensure_ascii=False),
-             MODEL if JUDGE_MODEL == MODEL else f"{MODEL} (검사관 {JUDGE_MODEL})", PROMPT_VERSION))
+             _model_label(), PROMPT_VERSION))
         return cur.lastrowid
 
 

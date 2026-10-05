@@ -32,7 +32,7 @@
 
 | 가이드 단계 | 하는 일 | 코드 |
 |---|---|---|
-| 1. 문서 로드 | PDF를 쪽별 텍스트로 읽음 | `rag_module.load_and_split()` — `PyMuPDFLoader` |
+| 1. 문서 로드 | PDF를 쪽별 텍스트로 읽음 | `rag/loader.py` `load_and_split()` — `PyMuPDFLoader` |
 | 2. 분할 | 텍스트를 일정 글자 수의 조각(청크)으로 자름 | 같은 함수 — `RecursiveCharacterTextSplitter(chunk_size, chunk_overlap)` |
 | 3. 임베딩 | 청크를 '의미를 나타내는 숫자 목록(벡터)'으로 바꿈 | `bge-m3`(로컬) 또는 `text-embedding-3-small`(OpenAI) |
 | 4. 벡터 DB | 벡터를 빠르게 찾을 수 있게 저장 | `FAISS.from_documents()` → `data/index/`에 저장해 재사용 |
@@ -127,7 +127,7 @@
 
 ## 4. 2단계: 프롬프트 기법 (검색 고정: 800/0, k=5, hybrid)
 
-원본: `eval/results/rag_prompt_20261005_1435.md`. 프롬프트 기법(역할 지정·형식 지정·Few-shot·CoT)을 하나씩 더해 같은 검색 결과로 비교했습니다. 프롬프트 내용은 `bio_gpt/prompts.py` 5절에 있습니다.
+원본: `eval/results/rag_prompt_20261005_1435.md`. 프롬프트 기법(역할 지정·형식 지정·Few-shot·CoT)을 하나씩 더해 같은 검색 결과로 비교했습니다. 프롬프트 내용은 `bio_gpt/agent/prompts.py` 5절에 있습니다.
 
 | 기법 | 설명 | 정답률 | 근거 일치율 | 출처 없는 줄 | 작성 시간 |
 |---|---|---:|---:|---:|---:|
@@ -168,7 +168,7 @@
 
 - 검색 적중률이 높을수록 대체로 정답률도 높았습니다. **검색이 못 찾으면 프롬프트로는 살릴 수 없습니다.**
 - 그런데 k=8은 적중률이 가장 높은데도 정답률이 떨어졌습니다. 정답과 비슷한 다른 수치(다른 암종의 발생률 등)가 함께 들어와 8B 모델이 헷갈렸습니다. **많이 가져오는 것과 잘 가져오는 것은 다릅니다.**
-- 그래서 기본값을 **800 / 0 / k=5 / hybrid + Few-shot**으로 정했습니다(`rag_module.DEFAULTS`).
+- 그래서 기본값을 **800 / 0 / k=5 / hybrid + Few-shot**으로 정했습니다(`rag/index.py` `DEFAULTS`).
 - 작성 시간은 같은 설정에서도 실행마다 2~6초씩 흔들렸습니다(2단계 5.6초 vs 3단계 2.1초). 시간은 경향만 보는 것이 맞습니다.
 
 ---

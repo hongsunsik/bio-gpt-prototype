@@ -11,8 +11,10 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-import bio_gpt.graph as G  # noqa: E402
-from bio_gpt import prompts as P  # noqa: E402
+from bio_gpt.agent import prompts as P  # noqa: E402
+from bio_gpt.agent import verifier  # noqa: E402
+from bio_gpt.agent.citations import format_context  # noqa: E402
+from bio_gpt.llm import complete  # noqa: E402
 from bio_gpt.sources import search_fda_label, search_pubmed  # noqa: E402
 
 # (자료 가져오기, 질문, [(문장, 참 여부)])
@@ -67,7 +69,7 @@ CASES = [
 
 
 def run(mode: str) -> dict:
-    G.VERIFY_MODE = mode
+    verifier.VERIFY_MODE = mode
     tp = fn = fp = tn = 0
     secs = []
     for fetch, question, claims in CASES:
@@ -76,16 +78,16 @@ def run(mode: str) -> dict:
         answer = "\n".join(f"- {text} [{doc_id}]" for text, _ in claims)
         messages = [{"role": "system", "content": P.GENERATOR_SYSTEM},
                     {"role": "user", "content": P.GENERATOR_USER.format(
-                        question=question, glossary="(해당 없음)", context=G._context(docs),
+                        question=question, glossary="(해당 없음)", context=format_context(docs),
                         ids=", ".join(d.id for d in docs), feedback="")}]
         if mode == "continue":
-            G.complete(messages)  # 실제 흐름처럼 생성 호출을 먼저 해서 캐시를 채운다
+            complete(messages)  # 실제 흐름처럼 생성 호출을 먼저 해서 캐시를 채운다
         state = {"docs": docs, "answer": answer, "gen_messages": messages, "verify_runs": [], "trace": []}
         t0 = time.time()
-        rows = G.verify(state)["verification"]["lines"]
+        rows = verifier.verify(state)["verification"]["lines"]
         secs.append(time.time() - t0)
         for row, (_, truth) in zip(rows, claims):
-            flagged = not G._line_ok(row)
+            flagged = not verifier.line_ok(row)
             if truth:
                 fp += flagged
                 tn += not flagged
