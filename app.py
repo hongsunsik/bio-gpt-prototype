@@ -42,10 +42,14 @@ with st.sidebar:
     # 실행 스크립트(scripts/start_mac.command)는 BIOGPT_SAMPLE=1로 켜서 샘플 문서가 미리 열린 상태로 시작한다
     use_sample = st.checkbox("샘플: 키트루다 FDA 허가 라벨(106쪽)", value=os.getenv("BIOGPT_SAMPLE") == "1",
                              disabled=up is not None)
-    with st.expander("검색 파라미터", expanded=True):
+    # 폼으로 묶어 "설정 적용"을 눌렀을 때만 반영한다. 슬라이더를 움직일 때마다 다시 실행되면
+    # 800 → 400으로 가는 동안 700, 600, 500 색인을 차례로 만들게 된다(한 번에 15~40초).
+    with st.expander("검색 파라미터", expanded=True), st.form("rag_params", border=False):
         d = rag.DEFAULTS
         chunk_size = st.slider("chunk_size (청크 글자 수)", 200, 2000, d["chunk_size"], 100)
-        chunk_overlap = st.slider("chunk_overlap (앞뒤 청크 겹침)", 0, chunk_size // 2, min(d["chunk_overlap"], chunk_size // 2), 25)
+        chunk_overlap = st.slider("chunk_overlap (앞뒤 청크 겹침)", 0, 1000, d["chunk_overlap"], 25,
+                                  help="chunk_size의 절반을 넘으면 절반으로 맞춥니다")
+        chunk_overlap = min(chunk_overlap, chunk_size // 2)
         k = st.slider("k (가져올 청크 수)", 1, 10, d["k"])
         types = list(rag.SEARCH_TYPES)
         search_type = st.radio("검색 방식", types, index=types.index(d["search_type"]), horizontal=True,
@@ -57,6 +61,7 @@ with st.sidebar:
                                     format_func=DOC_STYLES.get)
         doc_only = st.checkbox("업로드 문서만 검색", value=False,
                                help="끄면(기본) 질문이 문서에 관한 것일 때만 문서로 답하고, 아니면 논문·임상·FDA를 검색합니다")
+        st.form_submit_button("설정 적용", type="primary", use_container_width=True)
     st.session_state.doc_index = None
     if up is not None or use_sample:
         if up is not None:

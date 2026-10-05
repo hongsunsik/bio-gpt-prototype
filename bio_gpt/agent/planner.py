@@ -13,7 +13,12 @@ from .policy import mentions_person
 from .state import State, add_trace
 
 BIO_TYPES = ("drug", "gene", "protein", "disease")
-FDA_SECTIONS = ("IND", "DOSE", "BOX")
+FDA_SECTIONS = ("PURPOSE", "IND", "MOA", "DOSE", "BOX", "WARN")
+# "아스피린이 뭐야?"처럼 약 자체를 묻는 질문. 계획을 모델에 맡기면 적응증만 가져와 답이 한쪽으로 치우친다
+OVERVIEW_RE = r"(뭐야|뭔가요|뭐예요|뭐에요|무엇인가요|무엇이야|어떤\s*약|무슨\s*약|에\s*대해|알려\s*줘|소개)"
+# 이런 말이 있으면 약 전체가 아니라 특정 항목을 묻는 질문이다 (예: "소토라십 임상시험 현황 알려줘")
+SPECIFIC_RE = r"(임상|시험|용량|용법|적응증|부작용|이상반응|기전|경고|금기|허가|승인|비교|효과|연구|가격)"
+OVERVIEW_SECTIONS = ["PURPOSE", "IND", "MOA", "WARN", "BOX"]
 DOC_POINTER = r"(이|해당|위|업로드한?)\s*(약|약물|문서|라벨|논문|임상|파일|자료)"
 DOC_DISTANCE_MAX = 0.75  # 이름이 없는 질문은 문서와의 임베딩 거리가 이보다 가까우면 문서 질문으로 본다
 HISTORY_TURNS = 2
@@ -49,6 +54,24 @@ def _correct_category(category: str, question: str, entities: list) -> str:
     return category
 
 
+OVERVIEW_QUESTION = "{question} (근거 문서에서 이 약의 효능군, 작용 원리, 주요 적응증, 주요 경고·주의사항을 골고루 정리)"
+
+
+def _overview_plan(question: str, entities: list, plan: dict) -> dict:
+    """약 소개 질문이면 FDA 라벨의 효능군·적응증·작용기전·경고와 PubMed 리뷰 논문을 같이 본다.
+    작성 단계에 넘기는 질문도 고정한다. 모델이 다시 쓴 질문은 특정 항목(예: 박스 경고)으로 치우치는 일이 있었다."""
+    drugs = _entity_names(entities, ("drug",))
+    others = _entity_names(entities, ("gene", "protein", "disease"))
+    if not drugs or others or not re.search(OVERVIEW_RE, question) or re.search(SPECIFIC_RE, question):
+        return plan
+    drug = drugs[0]
+    return {**plan,
+            "modules": list(dict.fromkeys(["fda", "pubmed", *plan["modules"]])),
+            "queries": {**plan["queries"], "fda": plan["queries"].get("fda") or drug, "pubmed": f"{drug}[ti] AND review[pt]"},
+            "fda_sections": OVERVIEW_SECTIONS,
+            "rewritten": OVERVIEW_QUESTION.format(question=question)}
+
+
 def _doc_plan(state: State, entities: list, t0: float, detail: str) -> State:
     q = state["question"]
     return {"category": "research", "modules": ["pdf"], "queries": {"pdf": q}, "rewritten": q,
@@ -73,14 +96,13 @@ def plan(state: State) -> State:
     if ix and category == "research" and is_about_doc(question, entities, ix):
         return _doc_plan(state, entities, t0, "업로드 문서에 관한 질문 → 문서 검색")
 
-    rewritten = out.get("rewritten_question", question)
-    modules = [m for m in out.get("modules", []) if m in SOURCES]
-    queries = out.get("queries", {}) or {}
-    if category == "research" and not modules:  # 계획이 비면 논문 검색
-        modules, queries = ["pubmed"], {"pubmed": rewritten}
-    return {
-        "category": category, "modules": modules, "queries": queries,
-        "fda_sections": [x for x in out.get("fda_sections", []) or [] if x in FDA_SECTIONS],
-        "entities": out.get("entities", []), "rewritten": rewritten,
-        "trace": add_trace(state, "plan", t0, f"{category} / 모듈={modules}"),
-    }
+    p = {"modules": [m for m in out.get("modules", []) if m in SOURCES],
+         "queries": out.get("queries", {}) or {},
+         "fda_sections": [x for x in out.get("fda_sections", []) or [] if x in FDA_SECTIONS],
+         "rewritten": out.get("rewritten_question", question)}
+    if category == "research":
+        p = _overview_plan(question, entities, p)
+        if not p["modules"]:  # 계획이 비면 논문 검색
+            p["modules"], p["queries"] = ["pubmed"], {"pubmed": p["rewritten"]}
+    return {"category": category, **p, "entities": out.get("entities", []),
+            "trace": add_trace(state, "plan", t0, f"{category} / 모듈={p['modules']}")}

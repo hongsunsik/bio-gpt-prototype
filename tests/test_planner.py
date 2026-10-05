@@ -52,3 +52,26 @@ def test_about_doc_rules():
     assert planner.is_about_doc("흑색종 치료", [{"normalized": "melanoma", "type": "disease"}], ix)
     assert planner.is_about_doc("면역 부작용 비율", [], ix)  # 거리 0.5
     assert not planner.is_about_doc("부작용 비율", [], ix)  # 거리 0.9
+
+
+def test_overview_question_fixes_sections_and_query(monkeypatch):
+    out = run_plan(monkeypatch, {"category": "research", "modules": ["fda"], "fda_sections": ["BOX"],
+                                 "entities": [{"normalized": "aspirin", "type": "drug"}],
+                                 "rewritten_question": "아스피린의 박스 경고는?"}, "아스피린이 뭐야?")
+    assert out["modules"] == ["fda", "pubmed"]
+    assert out["queries"]["pubmed"] == "aspirin[ti] AND review[pt]"
+    assert out["fda_sections"] == planner.OVERVIEW_SECTIONS
+    assert "박스 경고" not in out["rewritten"]
+
+
+def test_specific_question_keeps_model_plan(monkeypatch):
+    out = run_plan(monkeypatch, {"category": "research", "modules": ["fda"], "fda_sections": ["IND"],
+                                 "entities": [{"normalized": "pembrolizumab", "type": "drug"}]}, "펨브롤리주맙의 FDA 허가 적응증은?")
+    assert out["modules"] == ["fda"] and out["fda_sections"] == ["IND"]
+
+
+def test_specific_request_with_disease_is_not_overview(monkeypatch):
+    ents = [{"normalized": "sotorasib", "type": "drug"}, {"normalized": "non-small cell lung cancer", "type": "disease"}]
+    out = run_plan(monkeypatch, {"category": "research", "modules": ["trials"], "entities": ents},
+                   "소토라십 비소세포폐암 임상시험 진행 현황 알려줘")
+    assert out["modules"] == ["trials"]

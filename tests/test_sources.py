@@ -15,3 +15,9 @@ def test_single_ingredient_label_preferred():
     combo = {"openfda": {"generic_name": ["metformin and sitagliptin"]}}
     single = {"openfda": {"generic_name": ["metformin"]}}
     assert _pick_label([combo, single]) is single
+
+
+def test_label_with_more_requested_sections_preferred():
+    otc = {"openfda": {"generic_name": ["aspirin"]}, "purpose": ["Pain reliever"], "indications_and_usage": ["x"]}
+    full = {**otc, "warnings": ["Reye's syndrome"]}
+    assert _pick_label([otc, full], ("PURPOSE", "IND", "WARN")) is full
