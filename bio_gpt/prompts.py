@@ -170,10 +170,10 @@ WITHHELD = "답변 보류: 생성된 답변이 근거 문서와 일치하는지 
 
 
 # ------------------------------------------------------------------ 5) 업로드 문서 RAG용 프롬프트 기법 비교 (2주차 과제)
-# 코멘토 2주차 프롬프트 가이드의 기법을 하나씩 더해 가며 같은 검색 결과로 답을 비교한다 (eval/rag_sweep.py prompt).
+# 프롬프트 기법(역할 지정·형식 지정·Few-shot·CoT)을 하나씩 더해 가며 같은 검색 결과로 답을 비교한다 (eval/rag_sweep.py prompt).
 # 결과와 채택 이유는 docs/rag_experiments.md. 모든 기법은 같은 {question} {glossary} {context} {ids}를 받는다.
 
-# 기법 0) 멘토 예제 코드의 프롬프트 그대로 (비교 기준선)
+# 기법 0) 규칙 없는 단순 지시 (비교 기준선. 흔히 쓰는 RAG 기본 프롬프트)
 BASELINE_TEMPLATE = """Answer the question based only on the following context:
 {context}
 
@@ -253,7 +253,7 @@ COT_OUTPUT = """#출력형식
 답변의 ( ) 자리를 채우고 괄호는 지웁니다. [ ] 안에는 근거 문서 ID만 씁니다. 답변은 1~5줄, 위 #제약조건을 지킵니다."""
 
 DOC_STYLES = {
-    "baseline": "기본 예제(멘토 코드)",
+    "baseline": "기본(단순 지시)",
     "v1.5": "v1.5 역할+규칙 목록(기존)",
     "format": "형식 지정",
     "fewshot": "형식 지정 + Few-shot",

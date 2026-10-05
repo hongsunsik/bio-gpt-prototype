@@ -1,4 +1,5 @@
 """Bio-GPT 1차년도 프로토타입 UI.  실행: uv run streamlit run app.py"""
+import os
 import tempfile
 import time
 from pathlib import Path
@@ -38,7 +39,9 @@ with st.sidebar:
     # ---------------------------------------------------------- 업로드 문서 RAG (2주차)
     st.subheader("📄 문서 RAG")
     up = st.file_uploader("PDF 업로드", type=["pdf"])
-    use_sample = st.checkbox("샘플: 키트루다 FDA 허가 라벨(106쪽)", value=False, disabled=up is not None)
+    # 실행 스크립트(scripts/start_mac.command)는 BIOGPT_SAMPLE=1로 켜서 샘플 문서가 미리 열린 상태로 시작한다
+    use_sample = st.checkbox("샘플: 키트루다 FDA 허가 라벨(106쪽)", value=os.getenv("BIOGPT_SAMPLE") == "1",
+                             disabled=up is not None)
     with st.expander("검색 파라미터", expanded=True):
         d = rag_module.DEFAULTS
         chunk_size = st.slider("chunk_size (청크 글자 수)", 200, 2000, d["chunk_size"], 100)

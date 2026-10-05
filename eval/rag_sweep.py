@@ -155,7 +155,7 @@ def stage_prompt():
 
 
 def stage_params(style: str):
-    # 기준선(멘토 예제 값) + 1단계 상위 설정
+    # 기준선(기본 설정) + 1단계 상위 설정
     configs = [(400, 100, 3, "similarity", "ko"), (400, 100, 5, "similarity", "ko"), (800, 0, 5, "hybrid", "ko"),
                (800, 0, 8, "hybrid", "ko"), (400, 0, 8, "hybrid", "en"), (1500, 0, 5, "similarity", "ko")]
     results = [run_answers(style, *c) for c in configs]
@@ -163,7 +163,7 @@ def stage_params(style: str):
 
 
 def stage_final():
-    """시작점(멘토 예제 그대로)과 최종 앱 흐름(검사·고쳐 쓰기·마무리 포함)의 최종 답을 비교한다."""
+    """시작점(기본 설정)과 최종 앱 흐름(검사·고쳐 쓰기·마무리 포함)의 최종 답을 비교한다."""
     from bio_gpt.graph import ask
     from bio_gpt.rag_module import DEFAULT_STYLE, DEFAULTS
 
@@ -181,7 +181,7 @@ def stage_final():
     status = {k: sum(r["status"] == k for r in rows) for k in ("answered", "partial", "withheld", "no_evidence")}
     md = ["# 4단계: 시작점 vs 최종 앱 (사용자가 실제로 보는 답)\n", *COMMON_NOTES, "",
           "| 구성 | 정답률 | 출처 없는 줄 | 응답 시간(중앙값) |", "|---|---:|---:|---:|",
-          f"| 시작점: 멘토 예제 그대로 (400/100 · k=3 · similarity · 기본 프롬프트, 검증 없음) | {start['acc'] * 100:.0f}% | "
+          f"| 시작점: 기본 설정 (400/100 · k=3 · similarity · 기본 프롬프트, 검증 없음) | {start['acc'] * 100:.0f}% | "
           f"{start['uncited']} | {start['gen_median_s']:.1f}초(작성만) |",
           f"| 최종: {d['chunk_size']}/{d['chunk_overlap']} · k={d['k']} · {d['search_type']} · {DEFAULT_STYLE} + 검사·고쳐 쓰기 | "
           f"{statistics.mean(r['correct'] for r in rows) * 100:.0f}% | 0 | {statistics.median(r['latency'] for r in rows):.1f}초(전체) |",

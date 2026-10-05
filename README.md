@@ -49,6 +49,9 @@ streamlit run app.py
 
 ### B. 로컬 모델로 실행 (외부 전송 없음)
 
+macOS에서는 `scripts/start_mac.command`를 더블클릭하면 Ollama 켜기 → 모델 확인 → 예열 → 웹 화면 열기까지 한 번에 진행합니다.
+직접 하려면:
+
 ```bash
 ollama pull qwen3:8b && ollama pull bge-m3
 ollama create bio-qwen3 -f Modelfile.qwen3-bio   # 문맥 16K 설정
