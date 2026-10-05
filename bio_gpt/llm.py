@@ -11,6 +11,7 @@ OpenAI 호환 Chat Completions API 하나로 통일해, 환경변수만 바꾸�
   LLM_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/  LLM_MODEL=gemini-3.8-flash  LLM_API_KEY=...
 
 간단히 LLM_PROFILE=local|gemini|openai 로 고를 수도 있다 (키는 GEMINI_API_KEY / OPENAI_API_KEY).
+LLM_PROFILE을 비워 두고 OPENAI_API_KEY만 있으면 openai로 동작한다.
 """
 import json
 import os
@@ -27,7 +28,9 @@ PROFILES = {
     "gemini": ("https://generativelanguage.googleapis.com/v1beta/openai/", "gemini-3.8-flash", os.getenv("GEMINI_API_KEY", "")),
     "openai": ("https://api.openai.com/v1", "gpt-4o", os.getenv("OPENAI_API_KEY", "")),
 }
-PROFILE = os.getenv("LLM_PROFILE", "local")
+# LLM_PROFILE이 없으면: OPENAI_API_KEY가 있으면 openai(GPT-4o), 없으면 local(Ollama).
+# → 2주차 실습 가이드처럼 .env에 OPENAI_API_KEY 한 줄만 넣어도 바로 동작한다.
+PROFILE = os.getenv("LLM_PROFILE") or ("openai" if os.getenv("OPENAI_API_KEY") else "local")
 _base, _model, _key = PROFILES[PROFILE]
 BASE_URL = os.getenv("LLM_BASE_URL", _base)
 MODEL = os.getenv("LLM_MODEL", _model)
@@ -49,9 +52,14 @@ else:
     JUDGE_MODEL, _judge_client, _JUDGE_LOCAL_OR_GEMINI = MODEL, _client, IS_LOCAL or IS_GEMINI
 
 
+# 출력 상한. 작은 모델이 temperature 0에서 같은 구절을 끝없이 반복하는 '반복 폭주'가 실제로 나서(2주차 실험)
+# 상한 없이 두면 3분 시간 초과까지 계속 생성한다.
+MAX_TOKENS = 1500
+
+
 def complete(messages: list, *, json_mode: bool = False, temperature: float = 0.0, judge: bool = False) -> str:
     client, model = (_judge_client, JUDGE_MODEL) if judge else (_client, MODEL)
-    kwargs = {}
+    kwargs = {"max_tokens": MAX_TOKENS}
     if json_mode:
         kwargs["response_format"] = {"type": "json_object"}
     if (_JUDGE_LOCAL_OR_GEMINI if judge else IS_LOCAL or IS_GEMINI):

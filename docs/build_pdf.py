@@ -96,9 +96,4 @@ def build(src: Path = SRC, pdf: Path = PDF, with_cover: bool = True, script: boo
 
 
 if __name__ == "__main__":
-    import sys
-    if "notes" in sys.argv[1:]:   # 발표 메모: uv run --with markdown python docs/build_pdf.py notes
-        build(DOCS / "presentation_script.md", DOCS / "Bio-GPT_발표대본.pdf", with_cover=False, script=True)
-        build(DOCS / "presentation_qa.md", DOCS / "Bio-GPT_발표준비_예상질문.pdf", with_cover=False)
-    else:
-        build()
+    build()

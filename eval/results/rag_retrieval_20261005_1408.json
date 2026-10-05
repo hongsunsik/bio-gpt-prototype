@@ -1,0 +1,3655 @@
+[
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "hybrid",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.9166666666666666,
+  "ctx_chars": 5944,
+  "missed": [
+   "D04"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "hybrid",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.8333333333333334,
+  "ctx_chars": 2864,
+  "missed": [
+   "D02",
+   "D08"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "hybrid",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.8333333333333334,
+  "ctx_chars": 3701,
+  "missed": [
+   "D04",
+   "D05"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "similarity",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.8333333333333334,
+  "ctx_chars": 5866,
+  "missed": [
+   "D04",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "hybrid",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.8333333333333334,
+  "ctx_chars": 5884,
+  "missed": [
+   "D02",
+   "D04"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "hybrid",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.8333333333333334,
+  "ctx_chars": 6545,
+  "missed": [
+   "D04",
+   "D05"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "similarity",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.8333333333333334,
+  "ctx_chars": 10417,
+  "missed": [
+   "D04",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "hybrid",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.8333333333333334,
+  "ctx_chars": 10473,
+  "missed": [
+   "D04",
+   "D05"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "hybrid",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.8333333333333334,
+  "ctx_chars": 10550,
+  "missed": [
+   "D02",
+   "D04"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "similarity",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.75,
+  "ctx_chars": 1171,
+  "missed": [
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "hybrid",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 1777,
+  "missed": [
+   "D01",
+   "D04",
+   "D05"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "hybrid",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.75,
+  "ctx_chars": 1799,
+  "missed": [
+   "D02",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "similarity",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.75,
+  "ctx_chars": 2829,
+  "missed": [
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "hybrid",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 2858,
+  "missed": [
+   "D01",
+   "D04",
+   "D05"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "mmr",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.75,
+  "ctx_chars": 5694,
+  "missed": [
+   "D04",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "hybrid",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 5752,
+  "missed": [
+   "D04",
+   "D05",
+   "D06"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "similarity",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 5977,
+  "missed": [
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "mmr",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.75,
+  "ctx_chars": 6023,
+  "missed": [
+   "D04",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "hybrid",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 6489,
+  "missed": [
+   "D04",
+   "D05",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "similarity",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 6524,
+  "missed": [
+   "D04",
+   "D05",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "similarity",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 6683,
+  "missed": [
+   "D04",
+   "D05",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "hybrid",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.75,
+  "ctx_chars": 6733,
+  "missed": [
+   "D02",
+   "D04",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "hybrid",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 10354,
+  "missed": [
+   "D04",
+   "D05",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "similarity",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 10404,
+  "missed": [
+   "D04",
+   "D05",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "similarity",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.75,
+  "ctx_chars": 10607,
+  "missed": [
+   "D04",
+   "D05",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "hybrid",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.75,
+  "ctx_chars": 10781,
+  "missed": [
+   "D02",
+   "D04",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "similarity",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 725,
+  "missed": [
+   "D02",
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "hybrid",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 1064,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "hybrid",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 1098,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D11"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "similarity",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 1789,
+  "missed": [
+   "D02",
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "hybrid",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 1792,
+  "missed": [
+   "D02",
+   "D04",
+   "D08",
+   "D11"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "hybrid",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 1796,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D11"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "similarity",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 2817,
+  "missed": [
+   "D02",
+   "D03",
+   "D04",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "hybrid",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 2822,
+  "missed": [
+   "D02",
+   "D04",
+   "D08",
+   "D11"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "hybrid",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 2859,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D11"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "hybrid",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 3594,
+  "missed": [
+   "D04",
+   "D05",
+   "D06",
+   "D07"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "mmr",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 3615,
+  "missed": [
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "similarity",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 3635,
+  "missed": [
+   "D02",
+   "D03",
+   "D04",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "similarity",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 3720,
+  "missed": [
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "hybrid",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 3899,
+  "missed": [
+   "D02",
+   "D04",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "similarity",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 4041,
+  "missed": [
+   "D04",
+   "D05",
+   "D06",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "hybrid",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 4042,
+  "missed": [
+   "D04",
+   "D05",
+   "D06",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "mmr",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 5737,
+  "missed": [
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "similarity",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 5802,
+  "missed": [
+   "D04",
+   "D05",
+   "D06",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "hybrid",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 5899,
+  "missed": [
+   "D02",
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "similarity",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 5920,
+  "missed": [
+   "D02",
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "similarity",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 6512,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "hybrid",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 6642,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D07"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "mmr",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 9623,
+  "missed": [
+   "D01",
+   "D04",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "similarity",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.6666666666666666,
+  "ctx_chars": 10324,
+  "missed": [
+   "D04",
+   "D05",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "similarity",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 432,
+  "missed": [
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "similarity",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 721,
+  "missed": [
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "hybrid",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 735,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "hybrid",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1072,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "hybrid",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1099,
+  "missed": [
+   "D02",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "similarity",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1110,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "mmr",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1134,
+  "missed": [
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "similarity",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1199,
+  "missed": [
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "hybrid",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1199,
+  "missed": [
+   "D02",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "hybrid",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1221,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "mmr",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1731,
+  "missed": [
+   "D01",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "similarity",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1772,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "similarity",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 1810,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "hybrid",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 2113,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D06",
+   "D07"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "similarity",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 2194,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "hybrid",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 2199,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "hybrid",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 2207,
+  "missed": [
+   "D02",
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "hybrid",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 2246,
+  "missed": [
+   "D02",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "mmr",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 2778,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "similarity",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 2867,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "similarity",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 2872,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "mmr",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 3625,
+  "missed": [
+   "D01",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "similarity",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 3641,
+  "missed": [
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "hybrid",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 3684,
+  "missed": [
+   "D02",
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "hybrid",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 3715,
+  "missed": [
+   "D02",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "similarity",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 3732,
+  "missed": [
+   "D02",
+   "D03",
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "similarity",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 3740,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "hybrid",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 3869,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D06",
+   "D07"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "mmr",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.5833333333333334,
+  "ctx_chars": 6507,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "hybrid",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 411,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "similarity",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 415,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "similarity",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 426,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "mmr",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 427,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "mmr",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 687,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "hybrid",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 728,
+  "missed": [
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "similarity",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 745,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "similarity",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 1060,
+  "missed": [
+   "D02",
+   "D03",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "similarity",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 1064,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "mmr",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 1109,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "similarity",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 1232,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "similarity",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 1797,
+  "missed": [
+   "D02",
+   "D03",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "similarity",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 2164,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "similarity",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 2167,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "mmr",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 2207,
+  "missed": [
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "similarity",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 2231,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "mmr",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 2267,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "mmr",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 2833,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "mmr",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 3613,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "mmr",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 3698,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "similarity",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 3945,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "mmr",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 5822,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "mmr",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 6404,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "similarity",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.5,
+  "ctx_chars": 6407,
+  "missed": [
+   "D01",
+   "D03",
+   "D04",
+   "D05",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "mmr",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 10213,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "mmr",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.5,
+  "ctx_chars": 10275,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "similarity",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 146,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "mmr",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 146,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "hybrid",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 146,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "similarity",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 356,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "mmr",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 356,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "hybrid",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 457,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "similarity",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 467,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "mmr",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 467,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "mmr",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 694,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "mmr",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 727,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "similarity",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 733,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "mmr",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 733,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "mmr",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 755,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "hybrid",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 769,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "hybrid",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 774,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "similarity",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 789,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "mmr",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1053,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "similarity",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1091,
+  "missed": [
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "hybrid",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1198,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "mmr",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1226,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "mmr",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1243,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "hybrid",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1252,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "similarity",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1282,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "similarity",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1287,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "mmr",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1287,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "mmr",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 1797,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "mmr",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 2256,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "mmr",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 3695,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "mmr",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 3697,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "similarity",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 3721,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D05",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "mmr",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 3853,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "hybrid",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 3895,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D10"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "mmr",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 5888,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "mmr",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 6175,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "mmr",
+  "k": 8,
+  "query": "en(번역)",
+  "hit": 0.4166666666666667,
+  "ctx_chars": 10056,
+  "missed": [
+   "D01",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "hybrid",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 136,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "similarity",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 137,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "mmr",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 137,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "similarity",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 150,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D06",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "mmr",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 150,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D06",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "hybrid",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 356,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D08",
+   "D10",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "mmr",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 427,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D06",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "mmr",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 466,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "similarity",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 746,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "mmr",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 746,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "hybrid",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 747,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "similarity",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 747,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "mmr",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 747,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "hybrid",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 747,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "similarity",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 764,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "mmr",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 764,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "hybrid",
+  "k": 5,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 780,
+  "missed": [
+   "D01",
+   "D02",
+   "D05",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "mmr",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1079,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "similarity",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1103,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "mmr",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1103,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "mmr",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1111,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "hybrid",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1170,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "hybrid",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1333,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "similarity",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1338,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "mmr",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1338,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "mmr",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1810,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "mmr",
+  "k": 5,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 1817,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 200,
+  "chunks": 539,
+  "build_s": 17.9,
+  "search": "mmr",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 2222,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "mmr",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 2871,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "mmr",
+  "k": 8,
+  "query": "ko",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 2895,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "mmr",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.3333333333333333,
+  "ctx_chars": 3796,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "similarity",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 152,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D06",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "mmr",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 152,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D06",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "hybrid",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 349,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D07",
+   "D08",
+   "D09",
+   "D10",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "similarity",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 355,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "mmr",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 355,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "hybrid",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.25,
+  "ctx_chars": 362,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "hybrid",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.25,
+  "ctx_chars": 368,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "hybrid",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 456,
+  "missed": [
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "mmr",
+  "k": 3,
+  "query": "ko",
+  "hit": 0.25,
+  "ctx_chars": 1120,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "similarity",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 1147,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "mmr",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 1147,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 375,
+  "chunks": 295,
+  "build_s": 15.9,
+  "search": "hybrid",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 1297,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D10",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 1500,
+  "overlap": 0,
+  "chunks": 261,
+  "build_s": 13.3,
+  "search": "hybrid",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.25,
+  "ctx_chars": 1371,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D10",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 0,
+  "chunks": 2011,
+  "build_s": 31.0,
+  "search": "hybrid",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.16666666666666666,
+  "ctx_chars": 155,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "similarity",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.16666666666666666,
+  "ctx_chars": 362,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 0,
+  "chunks": 910,
+  "build_s": 18.9,
+  "search": "mmr",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.16666666666666666,
+  "ctx_chars": 362,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "similarity",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.16666666666666666,
+  "ctx_chars": 370,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 400,
+  "overlap": 100,
+  "chunks": 1062,
+  "build_s": 22.2,
+  "search": "mmr",
+  "k": 1,
+  "query": "ko",
+  "hit": 0.16666666666666666,
+  "ctx_chars": 370,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "hybrid",
+  "k": 3,
+  "query": "en(번역)",
+  "hit": 0.16666666666666666,
+  "ctx_chars": 477,
+  "missed": [
+   "D01",
+   "D02",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 800,
+  "overlap": 0,
+  "chunks": 460,
+  "build_s": 14.8,
+  "search": "hybrid",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.16666666666666666,
+  "ctx_chars": 762,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D05",
+   "D07",
+   "D08",
+   "D10",
+   "D11",
+   "D12"
+  ]
+ },
+ {
+  "chunk_size": 200,
+  "overlap": 50,
+  "chunks": 2155,
+  "build_s": 34.9,
+  "search": "hybrid",
+  "k": 1,
+  "query": "en(번역)",
+  "hit": 0.0,
+  "ctx_chars": 161,
+  "missed": [
+   "D01",
+   "D02",
+   "D03",
+   "D04",
+   "D05",
+   "D06",
+   "D07",
+   "D08",
+   "D09",
+   "D10",
+   "D11",
+   "D12"
+  ]
+ }
+]

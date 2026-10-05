@@ -6,6 +6,21 @@
 - 설계서(구조, 코드별 선택 과정과 근거, LLM 선택·Gemini 비교, 프롬프트 설계, 평가, 용어 설명): [`docs/architecture.md`](docs/architecture.md) · PDF: [`docs/Bio-GPT_프로토타입_설계서.pdf`](docs/Bio-GPT_프로토타입_설계서.pdf)
 - RFP 피드백 반영 기록(범위 축소, 추적표, 측정 조건, 예산 역산): [`docs/rfp_feedback_notes.md`](docs/rfp_feedback_notes.md)
 - 골든셋 평가 리포트: [`eval/results/`](eval/results/)
+- **2주차: 업로드 문서 RAG + 파라미터·프롬프트 실험**: [`docs/rag_experiments.md`](docs/rag_experiments.md)
+
+## 2주차: 업로드 문서(PDF) RAG
+
+PDF를 올리면 가이드의 8단계(로드 → 분할 → 임베딩 → FAISS → 검색기 → 프롬프트 → LLM → 출력)로 답하고, 기존 Bio-GPT의 **출처 표시·자동 검증**을 그대로 적용합니다.
+사이드바에서 `chunk_size`, `chunk_overlap`, `k`, 검색 방식(similarity / mmr / hybrid), 프롬프트 기법을 바꿔 결과를 바로 비교할 수 있습니다.
+
+| | 시작점: 예제 코드 그대로 | 최종 |
+|---|---|---|
+| 설정 | 400 / 100 / k=3 / similarity, 예제 프롬프트 | 800 / 0 / k=5 / **hybrid**(의미+키워드 검색), **Few-shot** 프롬프트 + 답 검증 |
+| 정답 근거를 찾아온 비율 | 58% | 83% |
+| 최종 정답률 (키트루다 FDA 라벨 106쪽, 13문항) | 69% | **77%** |
+| 출처 없는 문장 | 17줄 | **0줄** |
+
+프롬프트 기법 6가지(예제 · 역할+규칙 · 형식 지정 · Few-shot · CoT · Few-shot+CoT)와 검색 설정 192가지 조합의 비교, 실험 중 고친 버그 4개는 [`docs/rag_experiments.md`](docs/rag_experiments.md)에 있습니다.
 
 ## 핵심 기능
 
@@ -20,20 +35,33 @@
 
 ## 실행
 
+### A. OpenAI 키로 실행 (2주차 실습 가이드 방식, Windows/Mac 공통)
+
 ```bash
-# 1) 로컬 LLM 준비 (Ollama)
-ollama pull qwen3:8b
-ollama create bio-qwen3 -f Modelfile.qwen3-bio   # 문맥 16K 설정
-
-# 2) 웹 UI
-uv sync
-uv run streamlit run app.py
-
-# 3) 골든셋 평가
-uv run python eval/run_eval.py
+python -m venv venv
+venv\Scripts\activate          # Mac: source venv/bin/activate
+pip install -r requirements.txt
+# 프로젝트 폴더에 .env 파일을 만들고 한 줄:  OPENAI_API_KEY=sk-...
+streamlit run app.py
 ```
 
-클라우드 모델을 쓰려면 `.env.example`을 `.env`로 복사하고 값을 채우면 됩니다(코드 수정 불필요).
+`.env`에 `OPENAI_API_KEY`만 있으면 GPT-4o + `text-embedding-3-small`로 동작합니다. 사이드바에서 "샘플: 키트루다 FDA 허가 라벨"을 체크하거나 PDF를 올리세요.
+
+### B. 로컬 모델로 실행 (외부 전송 없음)
+
+```bash
+ollama pull qwen3:8b && ollama pull bge-m3
+ollama create bio-qwen3 -f Modelfile.qwen3-bio   # 문맥 16K 설정
+uv sync
+uv run streamlit run app.py
+```
+
+### 평가
+
+```bash
+uv run python eval/run_eval.py                    # 1차: 외부 DB 검색 골든셋 16문항
+uv run python eval/rag_sweep.py retrieval         # 2주차: 검색 파라미터 실험 (그 밖의 단계는 docs/rag_experiments.md)
+```
 
 ## 구조
 
@@ -45,11 +73,16 @@ bio_gpt/
   prompts.py           프롬프트 명세 (버전 관리)
   glossary.py          영-한 의학 표준 용어 사전
   llm.py               OpenAI 호환 LLM 클라이언트 (Ollama · GPT-4o · Gemini 교체 가능)
+  rag_module.py        업로드 PDF RAG: 분할 · 임베딩 · FAISS · 검색(similarity/mmr/hybrid)
   store.py             SQLite 로그·피드백
 eval/
   golden_set.jsonl     골든셋 16문항
   run_eval.py          지표 계산 + 기준선 판정 리포트
+  pdf_golden_set.jsonl 업로드 문서 RAG 평가 13문항 (정답 원문·키워드)
+  rag_sweep.py         chunk_size · overlap · k · 검색 방식 · 프롬프트 기법 비교 실험
+samples/               실험·시연용 PDF (키트루다 FDA 허가 라벨)
 docs/architecture.md   시스템 설계서
+docs/rag_experiments.md 2주차 RAG 실험 보고서
 ```
 
 > 의료적 판단을 대신하지 않는 교육용 프로토타입입니다. 사업명·예산 등 RFP 수치는 가상 값입니다.

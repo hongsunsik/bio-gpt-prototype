@@ -42,8 +42,8 @@ PERSONAL_PATTERNS = [
 # 의약품 광고·허가 외 사용 유도 소지가 있는 표현 (SFR-006 컴플라이언스)
 COMPLIANCE_PATTERNS = [r"완치", r"부작용이?\s*(전혀\s*)?없", r"100\s*%\s*(효과|안전)", r"최고의\s*(약|치료)", r"허가\s*외.{0,6}권장"]
 
-CITE_RE = re.compile(r"\[((?:PMID:\d+)|(?:NCT\d{8})|(?:FDA:[0-9a-f]{8}-[A-Z]+))\]")
-ID_RE = re.compile(r"PMID:?\s*\d+|NCT\d{8}|FDA:[0-9a-f]{8}-[A-Z]+")  # 본문에 등장한 출처 ID (숫자 검증에서 제외)
+CITE_RE = re.compile(r"\[((?:PMID:\d+)|(?:NCT\d{8})|(?:FDA:[0-9a-f]{8}-[A-Z]+)|(?:DOC:p\d+-\d+))\]")
+ID_RE = re.compile(r"PMID:?\s*\d+|NCT\d{8}|FDA:[0-9a-f]{8}-[A-Z]+|DOC:p\d+-\d+")  # 본문에 등장한 출처 ID (숫자 검증에서 제외)
 BRACKET_RE = re.compile(r"\[([A-Za-z]{2,5}:? ?[^\[\]\s]{2,40})\]")  # 인용처럼 생긴 모든 괄호 (형식이 틀린 것 포함)
 NUM_RE = re.compile(r"\d+(?:[.,]\d+)?")
 
@@ -70,6 +70,12 @@ class State(TypedDict, total=False):
     final: str
     status: str  # answered | partial | no_evidence | withheld | refused
     trace: list  # [{"step":..., "ms":..., "detail":...}]
+    # 업로드 문서 RAG (2주차): 색인·검색 설정·프롬프트 기법
+    doc_index: object  # rag_module.DocIndex | None
+    doc_only: bool  # True면 업로드 문서만 검색 (외부 DB 검색 안 함)
+    rag: dict  # {"k": 3, "search_type": "similarity"}
+    prompt_style: str  # prompts.DOC_STYLES의 키. 기본 v1.5
+    reasoning: str  # CoT 기법의 '생각 과정' (화면의 판단 과정 보기)
 
 
 def _trace(state: State, step: str, t0: float, detail="") -> list:
@@ -88,6 +94,10 @@ def guard(state: State) -> State:
 
 def plan(state: State) -> State:
     t0 = time.time()
+    if state.get("doc_only") and state.get("doc_index"):
+        # 업로드 문서만 볼 때는 질의 분석(LLM 호출)을 건너뛴다. 다국어 임베딩(bge-m3)이라 한국어 질문으로 바로 검색한다.
+        return {"category": "research", "modules": ["pdf"], "queries": {"pdf": state["question"]},
+                "rewritten": state["question"], "entities": [], "trace": _trace(state, "plan", t0, "업로드 문서 검색")}
     hist = "\n".join(f"Q: {q}\nA: {a[:300]}" for q, a in state.get("history", [])[-2:]) or "(없음)"
     out = chat_json(P.PLANNER_SYSTEM, P.PLANNER_USER.format(history=hist, question=state["question"]))
     category = out.get("category", "research")
@@ -95,6 +105,8 @@ def plan(state: State) -> State:
     queries = out.get("queries", {}) or {}
     if category == "research" and not modules:  # 계획이 비면 논문 검색으로 기본 처리
         modules, queries = ["pubmed"], {"pubmed": out.get("rewritten_question", state["question"])}
+    if category == "research" and state.get("doc_index"):  # 업로드 문서가 있으면 함께 검색
+        modules, queries = modules + ["pdf"], {**queries, "pdf": state["question"]}
     return {
         "category": category, "modules": modules, "queries": queries,
         "fda_sections": [x for x in out.get("fda_sections", []) or [] if x in ("IND", "DOSE", "BOX")],
@@ -109,6 +121,10 @@ def retrieve(state: State) -> State:
 
     def run(mod):
         q = state["queries"].get(mod) or state["rewritten"]
+        if mod == "pdf":
+            rag = state.get("rag") or {}
+            return mod, state["doc_index"].search(q, k=rag.get("k", 3), search_type=rag.get("search_type", "similarity"),
+                                                  translate=rag.get("translate", False))
         if mod == "fda":
             # 약물 이름을 뺀 질문 핵심어(질병명 등)로 긴 라벨에서 관련 부분을 고른다
             focus = [e.get("normalized", "") for e in state.get("entities", []) if e.get("type") != "drug"]
@@ -148,7 +164,10 @@ def _repair_citations(answer: str, docs: list[Doc]) -> str:
         cands = [i for i in ids if i.startswith(stem) or stem.endswith(i.split(":")[-1])]
         return f"[{cands[0]}]" if len(cands) == 1 else m.group(0)
 
-    return BRACKET_RE.sub(fix, answer)
+    answer = BRACKET_RE.sub(fix, answer)
+    # '확인되지 않음' 줄은 '근거가 없다'는 뜻이라 출처를 달 수 없다. 모델이 붙였으면 떼어 낸다
+    # (붙인 채 두면 검사관이 '이 문서로는 확인되지 않음을 뒷받침 못 함'으로 걸러 맞는 답이 보류됨 — 2주차 실험 D13)
+    return "\n".join(CITE_RE.sub("", l).rstrip() if "확인되지 않음" in l else l for l in answer.splitlines())
 
 
 def _repair(state: State) -> str:
@@ -160,13 +179,25 @@ def _repair(state: State) -> str:
         bad=bad_text, context=_context(state["docs"]), ids=", ".join(d.id for d in state["docs"])))
     fixed = {int(f["n"]): (f.get("line") or "").strip() for f in out.get("fixed", [])
              if isinstance(f, dict) and str(f.get("n", "")).isdigit()}
+    reasons = {r["n"]: r.get("reason") or "" for r in bad}
     lines = []
     for r in rows:
         if _line_ok(r):
             lines.append(r["line"])
+        elif fixed.get(r["n"]) and _echoes_reason(fixed[r["n"]], reasons.get(r["n"], "")):
+            continue  # 고친 줄 대신 검사관의 지적문을 옮겨 적은 경우 버림 (2주차 실험 D07)
         elif fixed.get(r["n"]) and BRACKET_RE.search(fixed[r["n"]]):  # 출처 없는 고친 줄은 버림
             lines.append(fixed[r["n"]] if fixed[r["n"]].startswith("-") else f"- {fixed[r['n']]}")
     return "\n".join(lines)
+
+
+def _echoes_reason(line: str, reason: str) -> bool:
+    """고친 줄이 검사관 지적을 베꼈는지: 지적문의 12자 이상 구절이 그대로 있거나 '주장' 같은 검사 용어가 들어 있으면 그렇다고 본다."""
+    if re.search(r"주장(에서|은|이)|근거 문서(에는|상)|문서상", line):
+        return True
+    text = re.sub(r"\s+", "", reason)
+    flat = re.sub(r"\s+", "", line)
+    return any(text[i:i + 12] in flat for i in range(0, max(len(text) - 11, 0), 4))
 
 
 def generate(state: State) -> State:
@@ -179,17 +210,68 @@ def generate(state: State) -> State:
         passed = [r["line"] for r in v["lines"] if _line_ok(r)]
         return {"answer": answer, "passed_lines": passed, "attempts": state["attempts"] + 1,
                 "trace": _trace(state, "generate", t0, f"{len(v['lines']) - len(passed)}줄 고쳐 쓰기")}
+    style = state.get("prompt_style") or "v1.5"
+    if style != "v1.5" and not state.get("issues"):
+        # 업로드 문서 RAG에서 고른 프롬프트 기법으로 작성 (2주차 실험)
+        out = answer_from_docs(state["rewritten"], state["docs"], style)
+        return {"answer": out["answer"], "reasoning": out["reasoning"], "gen_messages": out["messages"],
+                "attempts": state.get("attempts", 0) + 1, "passed_lines": [],
+                "trace": _trace(state, "generate", t0, f"{state.get('attempts', 0) + 1}회차 · {P.DOC_STYLES[style]}")}
     feedback = P.REGENERATE_FEEDBACK.format(issues="\n".join(state["issues"])) if state.get("issues") else ""
-    glossary = "\n".join(f"- {en} → {ko}" for en, ko in terms_in(" ".join(d.text for d in state["docs"])).items()) or "(해당 없음)"
     messages = [{"role": "system", "content": P.GENERATOR_SYSTEM},
                 {"role": "user", "content": P.GENERATOR_USER.format(
-                    question=state["rewritten"], glossary=glossary, context=_context(state["docs"]),
+                    question=state["rewritten"], glossary=_glossary(state["docs"]), context=_context(state["docs"]),
                     ids=", ".join(d.id for d in state["docs"]), feedback=feedback)}]
     answer = complete(messages)
     answer = _join_wrapped(normalize(answer))  # 줄 이어 붙이기 + 비표준 표기(멜라노마 등) → 표준 용어
     answer = _repair_citations(answer, state["docs"])
     return {"answer": answer, "gen_messages": messages, "attempts": state.get("attempts", 0) + 1, "passed_lines": [],
             "trace": _trace(state, "generate", t0, f"{state.get('attempts', 0) + 1}회차")}
+
+
+def _glossary(docs: list[Doc]) -> str:
+    return "\n".join(f"- {en} → {ko}" for en, ko in terms_in(" ".join(d.text for d in docs)).items()) or "(해당 없음)"
+
+
+def answer_from_docs(question: str, docs: list[Doc], style: str) -> dict:
+    """주어진 검색 결과로 프롬프트 기법(style)에 따라 답을 쓴다. 실험(eval/rag_sweep.py)과 앱이 같이 쓴다."""
+    context = _context(docs)
+    messages = P.doc_messages(style, question, _glossary(docs), context, ", ".join(d.id for d in docs))
+    raw = complete(messages)
+    runaway = _is_runaway(raw)
+    if runaway:  # 반복 폭주 → 약간의 무작위성을 줘서 한 번 다시 쓴다
+        raw = complete(messages, temperature=0.3)
+    reasoning, answer = "", raw
+    if "cot" in style:
+        # '### 답변' 앞은 생각 과정, 뒤는 답변. 표시가 없으면 글머리표 줄만 답변으로 본다.
+        parts = re.split(r"#+\s*답변\s*\n", raw, maxsplit=1)
+        if len(parts) == 2:
+            reasoning, answer = parts[0].replace("### 생각 과정", "").strip(), parts[1]
+        else:
+            reasoning = raw
+            answer = "\n".join(l for l in raw.splitlines() if l.strip().startswith("-") and CITE_RE.search(l))
+    answer = _repair_citations(_join_wrapped(normalize(answer.strip())), docs)
+    leak = "fewshot" in style and any(m in answer for m in P.FEWSHOT_LEAK_MARKERS)
+    if _is_runaway(answer):
+        answer = ""  # 다시 써도 폭주하면 답을 버린다 → 검증 단계에서 답변 보류
+    return {"answer": answer, "reasoning": reasoning, "messages": messages, "leak": leak, "runaway": runaway,
+            "input_chars": sum(len(m["content"]) for m in messages)}
+
+
+def _is_runaway(text: str) -> bool:
+    """같은 구절(8자 이상)이 연달아 6번 넘게 반복되면 반복 폭주로 본다."""
+    return bool(re.search(r"(.{8,40}?)\1{5,}", text, flags=re.S))
+
+
+def verify_answer(answer: str, docs: list[Doc]) -> dict:
+    """실험용: 앱과 같은 검증(verify)을 한 번 돌려 걸린 줄 수를 센다.
+    글머리표가 없는 서술형 답(기본 예제 프롬프트)은 문장 줄 전체를 주장으로 본다."""
+    if not _claim_lines(answer):
+        answer = "\n".join(f"- {l.strip()}" for l in answer.splitlines() if l.strip())
+    v = verify({"answer": answer, "docs": docs, "passed_lines": [], "verify_runs": [], "trace": []})["verification"]
+    rows = v["lines"]
+    return {"lines": len(rows), "bad": sum(not _line_ok(r) for r in rows),
+            "uncited": sum(not r["checks"].get("has_citation") and not r["checks"].get("not_found_ok") for r in rows)}
 
 
 def _join_wrapped(answer: str) -> str:
@@ -307,7 +389,8 @@ def finalize(state: State) -> State:
             body = "\n".join(kept) + "\n\n_(근거 검증을 통과하지 못한 내용은 제외했습니다.)_"
         else:
             status, body = "withheld", P.WITHHELD
-    return {"final": f"{body}\n\n---\n{P.DISCLAIMER}", "status": status, "trace": _trace(state, "finalize", t0, status)}
+    disclaimer = P.DISCLAIMER_DOC if state.get("modules") == ["pdf"] else P.DISCLAIMER
+    return {"final": f"{body}\n\n---\n{disclaimer}", "status": status, "trace": _trace(state, "finalize", t0, status)}
 
 
 def no_evidence(state: State) -> State:
@@ -361,11 +444,13 @@ def build_graph():
 GRAPH = build_graph()
 
 
-def ask_stream(question: str, history: list | None = None):
-    """단계가 끝날 때마다 (단계 이름, 상태)를 내보낸다. UI 진행 표시용. 마지막 값이 최종 상태."""
+def ask_stream(question: str, history: list | None = None, options: dict | None = None):
+    """단계가 끝날 때마다 (단계 이름, 상태)를 내보낸다. UI 진행 표시용. 마지막 값이 최종 상태.
+    options: 업로드 문서 RAG 설정 {doc_index, doc_only, rag, prompt_style}"""
     t0 = time.time()
     state = {}
-    for state in GRAPH.stream({"question": question, "history": history or [], "trace": []}, stream_mode="values"):
+    for state in GRAPH.stream({"question": question, "history": history or [], "trace": [], **(options or {})},
+                              stream_mode="values"):
         trace = state.get("trace") or []
         if trace:
             yield trace[-1]["step"], state
@@ -374,9 +459,9 @@ def ask_stream(question: str, history: list | None = None):
     yield "done", state
 
 
-def ask(question: str, history: list | None = None) -> State:
+def ask(question: str, history: list | None = None, options: dict | None = None) -> State:
     t0 = time.time()
-    state = GRAPH.invoke({"question": question, "history": history or [], "trace": []})
+    state = GRAPH.invoke({"question": question, "history": history or [], "trace": [], **(options or {})})
     state["latency_ms"] = int((time.time() - t0) * 1000)
     # PER-002 측정 조건: '복합 질의' = 2개 이상의 검색 모듈을 호출한 질의
     state["is_complex"] = len(state.get("modules", [])) >= 2

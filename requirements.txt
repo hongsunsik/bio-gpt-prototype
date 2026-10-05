@@ -1,0 +1,12 @@
+python-dotenv
+httpx
+openai
+langgraph
+streamlit
+langchain-core
+langchain-community
+langchain-openai
+langchain-text-splitters
+faiss-cpu
+pymupdf
+rank-bm25
