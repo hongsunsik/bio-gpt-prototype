@@ -1,0 +1,19 @@
+[project]
+name = "bio-gpt-prototype"
+version = "0.1.0"
+description = "Bio-GPT 1차년도 핵심기능 프로토타입 (LangGraph + RAG + 답변 검증)"
+authors = [
+    { name = "hongsunsik", email = "hongsunsik1@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "langgraph>=1.2.12",
+    "openai>=3.24.0",
+    "python-dotenv>=1.2.4",
+    "streamlit>=1.65.0",
+]
+
+
+[tool.uv]
+package = false

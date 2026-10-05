@@ -1,0 +1,13 @@
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.venv
+.env
+data/
+.DS_Store
+# 개인 발표 준비 자료
+docs/presentation_*.md
+docs/Bio-GPT_발표*.pdf
